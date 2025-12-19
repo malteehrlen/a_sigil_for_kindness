@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <style>
+        canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="7000px" height="4000px"></canvas>
+    <script>
+var shower=!1,computer=!1,showerX=.67,showerY=.23,showerRadius=.16,computerX=.49,computerY=.37,computerRadius=.03,windowX=.34,windowY=.37,windowRadius=.06,bedX=.36,bedY=.59,bedRadius=.05,kitchenX=.65,kitchenY=.55,kitchenRadius=.05,fillText="",textPosX=0,textPosY=0,currentDialog=null,currentDialogPosition=0,computerDialog=["Hmm lets see...","The first page results are just AI...","The second page results seem to be more AI and some products for sale.","... Enochian schampoo ...","hmm. It does not seem that the internet is useful for research."];function start(){var e=new Audio("audio.mp3"),t=document.querySelector("canvas");const o=t.getContext("2d");t.addEventListener("click",(o=>{e.play();var a=o.clientX/t.offsetWidth,i=o.clientY/t.offsetHeight;currentDialog?currentDialogPosition>=currentDialog.length?(currentDialogPosition=0,currentDialog=null,fillText=""):(fillText=currentDialog[currentDialogPosition],currentDialogPosition+=1):Math.abs(a-showerX)*Math.abs(a-showerX)+Math.abs(i-showerY)*Math.abs(i-showerY)<showerRadius*showerRadius?(fillText=shower?"":"Its still damp in here...",shower=!shower):Math.abs(a-computerX)*Math.abs(a-computerX)+Math.abs(i-computerY)*Math.abs(i-computerY)<computerRadius*computerRadius?(fillText="Maybe I should go online. I need to continue researching Enochian magic.",currentDialog=computerDialog):fillText=Math.abs(a-windowX)*Math.abs(a-windowX)+Math.abs(i-windowY)*Math.abs(i-windowY)<windowRadius*windowRadius?"It looks pretty bleak. I dont want to go outside.":Math.abs(a-bedX)*Math.abs(a-bedX)+Math.abs(i-bedY)*Math.abs(i-bedY)<bedRadius*bedRadius?"Nah, I just got up...":Math.abs(a-kitchenX)*Math.abs(a-kitchenX)+Math.abs(i-kitchenY)*Math.abs(i-kitchenY)<kitchenRadius*kitchenRadius?"Im not hungry. Besides, the fridge is empty.":"",console.log(shower),console.log(a),console.log(i),textPosX=o.ClientX,textPosY=o.ClientY}));const a=new Image;a.onload=drawImageScaled.bind(null,a,o),blinkComputer(),loop(a)}async function loop(e,t){src="layer1.jpg",src=shower?computer?"layer4.jpg":"layer3.jpg":computer?"layer2.jpg":"layer1.jpg",e.src=src,await new Promise((e=>setTimeout(e,20))),loop(e)}async function blinkComputer(){computer=!computer,await new Promise((e=>setTimeout(e,2e3))),blinkComputer()}function drawImageScaled(e,t){var o=t.canvas,a=o.width/e.width,i=o.height/e.height,s=Math.min(a,i),r=(o.width-e.width*s)/2,n=(o.height-e.height*s)/2;t.clearRect(0,0,o.width,o.height),t.drawImage(e,0,0,e.width,e.height,r,n,e.width*s,e.height*s),(t=o.getContext("2d")).font="72pt Verdana",t.fillStyle="white",t.fillText(fillText,500,500),t.stroke()}start();
+    </script>
+</body>
+
+</html>
